@@ -53,7 +53,7 @@ class InstagramBot():
 			self.browser.back()
 
 
-	def like_posts_in_hashtags(self, hashtag_list=[], num_to_like=12):
+	def like_posts_in_hashtags(self, hashtag_list=["food", "ilovetheburg"], num_to_like=12):
 		for tag in hashtag_list:
 			self.like_posts_in_hashtag(hashtag=tag, num_to_like=num_to_like)
 			print("Liked posts in hashtag: " + tag)
@@ -62,7 +62,7 @@ class InstagramBot():
 username = sys.argv[1]
 password = sys.argv[2]
 num_to_like = 12
-hashtag_list = ["food", "ilovetheburg"]
+hashtag_list = []
 
 if len(sys.argv) >= 3:
 	num_to_like = int(sys.argv[3])
