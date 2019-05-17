@@ -15,6 +15,7 @@ class InstagramBot():
 		options = Options()
 		options.headless = True
 		self.browser = webdriver.Firefox(profile, options=options, executable_path=r"geckodriver")
+		self.browser.set_window_size(1280, 920)
 		self.email = email
 		self.password = password
 
@@ -48,7 +49,11 @@ class InstagramBot():
 			post.click()
 			time.sleep(1)
 			pic = self.browser.find_element_by_css_selector("button[class='dCJp8 afkep _0mzm-']")
-			pic.click()
+			if 'Unlike' in str(pic.get_attribute('innerHTML')):
+				print("Already liked!")
+			else:
+				pic.click()
+				print("Liked media.")
 			time.sleep(1)
 			self.browser.back()
 
@@ -76,4 +81,5 @@ bot.sign_in()
 while True:
 	bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 	sleep_length = random.random() * 43200
+	print("Done liking for now. Going to sleep.")
 	time.sleep(sleep_length)
