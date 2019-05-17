@@ -19,8 +19,7 @@ class InstagramBot():
 		self.password = password
 
 
-	# fix camelcase style
-	def signIn(self):
+	def sign_in(self):
 		self.browser.get('https://www.instagram.com/accounts/login/')
 
 		while True:
@@ -30,12 +29,12 @@ class InstagramBot():
 			except:
 				time.sleep(1)
 
-		emailInput = self.browser.find_elements_by_css_selector('form input')[0]
-		passwordInput = self.browser.find_elements_by_css_selector('form input')[1]
+		email_input = self.browser.find_elements_by_css_selector('form input')[0]
+		password_input = self.browser.find_elements_by_css_selector('form input')[1]
 
-		emailInput.send_keys(self.email)
-		passwordInput.send_keys(self.password)
-		passwordInput.send_keys(Keys.ENTER)
+		email_input.send_keys(self.email)
+		password_input.send_keys(self.password)
+		password_input.send_keys(Keys.ENTER)
 		time.sleep(2)
 
 
@@ -72,7 +71,7 @@ for i in range(4, len(sys.argv)):
 	hashtag_list.append(sys.argv[i])
 
 bot = InstagramBot(username, password)
-bot.signIn()
+bot.sign_in()
 
 while True:
 	bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
