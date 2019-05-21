@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.firefox.options import Options
-import time
+import datetime, time
 from selenium.webdriver.common.keys import Keys
 import sys
 import random
@@ -64,6 +64,26 @@ class InstagramBot():
 			print("Liked posts in hashtag: " + tag)
 
 
+def run_forever():
+	try:
+		bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
+	except:
+		try:
+			bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
+		except:
+			pass
+
+	count = 0
+	minutes_to_wait = 60*5*random.random()
+	print("Waiting " + str(minutes_to_wait) + " minutes.")
+
+	while count < minutes_to_wait:
+		time.sleep(60)
+		count += 1
+		print(str(count*100/minutes_to_wait) + "%")
+
+	run_forever()
+
 username = sys.argv[1]
 password = sys.argv[2]
 num_to_like = 12
@@ -78,8 +98,5 @@ for i in range(4, len(sys.argv)):
 bot = InstagramBot(username, password)
 bot.sign_in()
 
-while True:
-	bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
-	sleep_length = random.random() * 43200
-	print("Done liking for now. Going to sleep.")
-	time.sleep(sleep_length)
+run_forever()
+
