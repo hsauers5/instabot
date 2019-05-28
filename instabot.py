@@ -5,7 +5,7 @@ import datetime, time
 from selenium.webdriver.common.keys import Keys
 import sys
 import random
-
+from pyvirtualdisplay import Display
 
 class InstagramBot():
 	def __init__(self, email, password):
@@ -13,8 +13,8 @@ class InstagramBot():
 		user_agent = "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"
 		profile.set_preference("general.useragent.override", user_agent)
 		options = Options()
-		options.headless = True
-		self.browser = webdriver.Firefox(profile, options=options, executable_path=r"geckodriver")
+		options.headless = False
+		self.browser = webdriver.Firefox(profile, options=options, executable_path="geckodriver")
 		self.browser.set_window_size(1280, 920)
 		self.email = email
 		self.password = password
@@ -65,24 +65,32 @@ class InstagramBot():
 
 
 def run_forever():
-	try:
-		bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
-	except:
+	while True:
+
+		bot = InstagramBot(username, password)
+		bot.sign_in()
+
 		try:
 			bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 		except:
-			pass
+			try:
+				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
+			except:
+				pass
 
-	count = 0
-	minutes_to_wait = 60*5*random.random()
-	print("Waiting " + str(minutes_to_wait) + " minutes.")
+		count = 0
+		minutes_to_wait =  0.01  # 60*5*random.random()
+		bot.browser.close()
+		print("Waiting " + str(minutes_to_wait) + " minutes.")
 
-	while count < minutes_to_wait:
-		time.sleep(60)
-		count += 1
-		print(str(count*100/minutes_to_wait) + "%")
+		while count < minutes_to_wait:
+			time.sleep(1)
+			count += 1
+			print(str(count*100/minutes_to_wait) + "%")
 
-	run_forever()
+
+display = Display(visible=False, size=[800,600])
+display.start()
 
 username = sys.argv[1]
 password = sys.argv[2]
@@ -95,8 +103,7 @@ if len(sys.argv) >= 3:
 for i in range(4, len(sys.argv)):
 	hashtag_list.append(sys.argv[i])
 
-bot = InstagramBot(username, password)
-bot.sign_in()
+# bot = InstagramBot(username, password)
+# bot.sign_in()
 
 run_forever()
-
