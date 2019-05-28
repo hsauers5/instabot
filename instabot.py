@@ -79,7 +79,7 @@ def run_forever():
 				pass
 
 		count = 0
-		minutes_to_wait =  0.01  # 60*5*random.random()
+		minutes_to_wait = 60*5*random.random()
 		bot.browser.close()
 		print("Waiting " + str(minutes_to_wait) + " minutes.")
 
