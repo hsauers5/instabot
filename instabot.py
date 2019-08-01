@@ -37,7 +37,7 @@ class InstagramBot():
 		email_input.send_keys(self.email)
 		password_input.send_keys(self.password)
 		password_input.send_keys(Keys.ENTER)
-		time.sleep(2)
+		time.sleep(5)
 
 		# need security code!
 		if len(self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")) != 0:
@@ -70,7 +70,7 @@ class InstagramBot():
 			print("Liked posts in hashtag: " + tag)
 
 	def wait(self, site="http://example.com/"):
-		self.browser.get(site)	
+		self.browser.get(site)
 
 	def security_code_required(self):
 		print("Security code required!")
