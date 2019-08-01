@@ -5,7 +5,7 @@ import datetime, time
 from selenium.webdriver.common.keys import Keys
 import sys
 import random
-from pyvirtualdisplay import Display
+from xvfbwrapper import Xvfb
 
 class InstagramBot():
 	def __init__(self, email, password):
@@ -106,4 +106,6 @@ for i in range(4, len(sys.argv)):
 # bot = InstagramBot(username, password)
 # bot.sign_in()
 
-run_forever()
+with Xvfb() as xvfb:
+        run_forever()
+
