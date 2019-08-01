@@ -15,7 +15,7 @@ class InstagramBot():
 		options = Options()
 		options.headless = False
 		self.browser = webdriver.Firefox(profile, options=options, executable_path="geckodriver")
-		self.browser.set_window_size(1280, 920)
+		self.browser.set_window_size(920, 1280)
 		self.email = email
 		self.password = password
 
@@ -38,6 +38,11 @@ class InstagramBot():
 		password_input.send_keys(self.password)
 		password_input.send_keys(Keys.ENTER)
 		time.sleep(2)
+
+		# need security code!
+		if len(self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")) != 0:
+			time.sleep(2)
+			self.security_code_required()
 
 
 	# likes N posts in hashtag
@@ -64,6 +69,22 @@ class InstagramBot():
 			self.like_posts_in_hashtag(hashtag=tag, num_to_like=num_to_like)
 			print("Liked posts in hashtag: " + tag)
 
+	def wait(self, site="http://example.com/"):
+		self.browser.get(site)	
+
+	def security_code_required(self):
+		print("Security code required!")
+		security_button = self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")[0]
+		security_button.click()
+		time.sleep(1)
+		code_field = self.browser.find_element_by_id("security_code")
+		code_field.click()
+		your_code = input("Please enter the code sent to your email: ").strip()
+		code_field.send_keys(your_code)
+		time.sleep(1)
+		self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")[0].click()
+		time.sleep(3)
+
 
 def run_forever():
 	bot = InstagramBot(username, password)
@@ -76,12 +97,13 @@ def run_forever():
 			try:
 				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 			except:
-				bot.sign_in()
-				continue
+				# bot.sign_in()
+				# continue
+				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 
 		count = 0
 		minutes_to_wait = 60*5*random.random()
-		# bot.browser.get("http://example.com")
+		bot.wait()
 		print("Waiting " + str(minutes_to_wait) + " minutes.")
 
 		while count < minutes_to_wait:
@@ -104,4 +126,5 @@ for i in range(4, len(sys.argv)):
 # bot.sign_in()
 
 with Xvfb() as xvfb:
-        run_forever()
+	run_forever()
+# run_forever()
