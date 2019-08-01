@@ -76,7 +76,8 @@ def run_forever():
 			try:
 				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 			except:
-				pass
+				bot.sign_in()
+				continue
 
 		count = 0
 		minutes_to_wait = 60*5*random.random()
