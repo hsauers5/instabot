@@ -81,7 +81,7 @@ def run_forever():
 
 		count = 0
 		minutes_to_wait = 60*5*random.random()
-		bot.browser.get("http://example.com")
+		# bot.browser.get("http://example.com")
 		print("Waiting " + str(minutes_to_wait) + " minutes.")
 
 		while count < minutes_to_wait:
