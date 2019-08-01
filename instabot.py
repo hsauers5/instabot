@@ -22,7 +22,8 @@ class InstagramBot():
 
 	def sign_in(self):
 		self.browser.get('https://www.instagram.com/accounts/login/')
-
+		print("Signing in...")
+		
 		while True:
 			try:
 				tmp = self.browser.find_elements_by_css_selector('form input')[0]
