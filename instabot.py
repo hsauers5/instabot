@@ -88,10 +88,6 @@ def run_forever():
 			count += 1
 			print(str(count*100/minutes_to_wait) + "%")
 
-
-display = Display(visible=False, size=[800,600])
-display.start()
-
 username = sys.argv[1]
 password = sys.argv[2]
 num_to_like = 12
@@ -108,4 +104,3 @@ for i in range(4, len(sys.argv)):
 
 with Xvfb() as xvfb:
         run_forever()
-
