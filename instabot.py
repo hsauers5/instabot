@@ -65,11 +65,10 @@ class InstagramBot():
 
 
 def run_forever():
+	bot = InstagramBot(username, password)
+	bot.sign_in()
+	
 	while True:
-
-		bot = InstagramBot(username, password)
-		bot.sign_in()
-
 		try:
 			bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 		except:
@@ -80,7 +79,7 @@ def run_forever():
 
 		count = 0
 		minutes_to_wait = 60*5*random.random()
-		bot.browser.close()
+		bot.browser.get("http://example.com")
 		print("Waiting " + str(minutes_to_wait) + " minutes.")
 
 		while count < minutes_to_wait:
