@@ -98,7 +98,7 @@ def run_forever():
 			try:
 				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 			except:
-				bot.sign_in()
+				# bot.sign_in()
 				bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 				continue
 
