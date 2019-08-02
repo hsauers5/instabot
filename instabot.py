@@ -82,8 +82,9 @@ class InstagramBot():
 		your_code = input("Please enter the code sent to your email: ").strip()
 		code_field.send_keys(your_code)
 		time.sleep(1)
-		self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")[0].click()
-		time.sleep(3)
+		code_field.send_keys(Keys.ENTER)
+		# self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")[0].click()
+		time.sleep(10)
 
 
 def run_forever():
