@@ -85,6 +85,12 @@ class InstagramBot():
 		code_field.send_keys(Keys.ENTER)
 		# self.browser.find_elements_by_css_selector("button[class='_5f5mN       jIbKX KUBKM      yZn4P   ']")[0].click()
 		time.sleep(10)
+		while True:
+			print(self.browser.current_url)
+			if self.browser.current_url != "https://www.instagram.com":
+				break
+			else:
+				time.sleep(5)
 
 
 def run_forever():
