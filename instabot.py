@@ -52,7 +52,10 @@ class InstagramBot():
 		time.sleep(1)
 		posts = self.browser.find_elements_by_css_selector("div[class='v1Nh3 kIKUG  _bz0w']")[9:num_to_like+9]
 		for post in posts:
-			post.click()
+			try:
+				post.click()
+			except:
+				continue
 			time.sleep(1)
 			pic = None
 			try:
