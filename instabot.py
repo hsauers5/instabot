@@ -121,7 +121,7 @@ def run_forever():
 		while count < minutes_to_wait:
 			time.sleep(60)
 			count += 1
-			print(str(count/minutes_to_wait) + "%")
+			print(str(count*100/minutes_to_wait) + "%")
 
 username = sys.argv[1]
 password = sys.argv[2]
