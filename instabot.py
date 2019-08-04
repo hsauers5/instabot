@@ -54,7 +54,12 @@ class InstagramBot():
 		for post in posts:
 			post.click()
 			time.sleep(1)
-			pic = self.browser.find_element_by_css_selector("button[class='dCJp8 afkep _0mzm-']")
+			pic = None
+			try:
+				pic = self.browser.find_element_by_css_selector("button[class='dCJp8 afkep _0mzm-']")
+			except:
+				continue
+
 			if 'Unlike' in str(pic.get_attribute('innerHTML')):
 				print("Already liked!")
 			else:
