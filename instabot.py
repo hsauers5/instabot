@@ -22,6 +22,11 @@ class InstagramBot():
 
 	def sign_in(self):
 		self.browser.get('https://www.instagram.com/accounts/login/')
+		
+		time.sleep(3)
+		if self.browser.current_url != "https://www.instagram.com/accounts/login/":
+			return
+		
 		print("Signing in...")
 		
 		while True:
@@ -103,9 +108,9 @@ class InstagramBot():
 
 def run_forever():
 	bot = InstagramBot(username, password)
-	bot.sign_in()
 	
 	while True:
+		bot.sign_in()  # now detects if logged in or not
 		try:
 			bot.like_posts_in_hashtags(hashtag_list=hashtag_list, num_to_like=num_to_like)
 		except:
