@@ -77,7 +77,7 @@ class InstagramBot():
 			self.like_posts_in_hashtag(hashtag=tag, num_to_like=num_to_like)
 			print("Liked posts in hashtag: " + tag)
 
-	def wait(self, site="http://example.com/"):
+	def wait(self, site="https://www.instagram.com/"):
 		self.browser.get(site)
 
 	def security_code_required(self):
