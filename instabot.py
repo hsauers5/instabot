@@ -68,7 +68,7 @@ class InstagramBot():
 			else:
 				pic.click()
 				print("Liked media.")
-			time.sleep(1)
+			time.sleep(2)
 			self.browser.back()
 
 
