@@ -9,6 +9,7 @@ sudo wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/gecko
 sudo tar xzf geckodriver-v0.24.0-linux64.tar.gz
 sudo chmod +x geckodriver
 sudo mv geckodriver /usr/local/bin/geckodriver
+sudo chmod 777 geckodriver.log
 sudo fallocate -l 1.5G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
