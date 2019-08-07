@@ -13,4 +13,4 @@ sudo fallocate -l 1.5G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
+sudo sh -c 'echo "/swapfile swap swap defaults 0 0" >> /etc/fstab'
